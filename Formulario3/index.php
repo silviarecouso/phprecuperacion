@@ -9,8 +9,7 @@
                     <option value="Hombre">Hombre</option>
                 </select></p>
                 <p>Familia Numerosa: 
-                    <input type="checkbox" name="familianumerosa" value="Si"/>Si
-                    <input type="checkbox" name="familianumerosa" value="No"/>No
+                    <input type="checkbox" name="familianumerosa" value="Si"/>
                 </p>
             <p><input type="submit" value="Enviar" /></p>
         </form>
