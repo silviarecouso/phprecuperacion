@@ -11,6 +11,13 @@ function limpiarEntradaTexto($entrada) {
 function validaremail ($email) {
     return(filter_var($email,FILTER_VALIDATE_EMAIL));
 }
+function edad($FechaNacimiento) {
+            $date1 = new DateTime($FechaNacimiento); 
+            $date2 = new DateTime("now"); 
+            $interval = $date1->diff($date2); 
+            $diff = $interval->format('%y'); 
+            return $diff;  
+}
 
 
         $nombre = (isset($_REQUEST['nombre']))?$_REQUEST['nombre']:"No definido";
@@ -26,11 +33,14 @@ function validaremail ($email) {
         }else{
         $erroremail="";
         }
+ //Validar fecha nacimiento
+        $edad = edad($FechaNacimiento);
         
   $nombre= limpiarEntradaTexto($nombre);
   
 print "<p>Nombre:                      $nombre</p>"; 
 print "<p>Fecha de Nacimiento:         $FechaNacimiento</p>"; 
+print "<p>Edad:                        $edad </p>";
 print "<p>Email:                       $email.$erroremail</p>";
 print "<p>Sexo:                        $sexo</p>"; 
 print "<p>Familia Numerosa:            $familianumerosa</p>"; 
