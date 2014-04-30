@@ -50,6 +50,7 @@ function validarnombre($nombre){
      if (!validaremail($email)){
         $erroremail="(Error en email)";//Hay error
         $hayerrores = True;
+        $errores .="&erroremail";
     }else{
         $erroremail="";
         }
@@ -58,6 +59,7 @@ function validarnombre($nombre){
      if ($edad<18){
         $erroredad="(Error en edad)";//Hay error
         $hayerrores = True;
+        $errores .="&erroredad";
      }else{
         $erroredad="";
         }
