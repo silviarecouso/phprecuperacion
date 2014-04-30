@@ -32,36 +32,50 @@ function validarnombre($nombre){
         $sexo = $_REQUEST['sexo'];
         $familianumerosa = (isset($_REQUEST['familianumerosa']))?"si":"No";
         
-        
-        
+     
+   //Variable para indicar si hay errores
+        $hayerrores = False;
+        $errores="";
 //Validar nombre
   $nombre= limpiarEntradaTexto($nombre);  
   if (!validarnombre($nombre)){
         $errornombre="(Error en nombre)";//Hay error
-        }else{
+        $hayerrores = True;
+        $errores .="&errornombre";
+        
+  }else{
         $errornombre="";
         }
 //Validar el e-mail:
-        if (!validaremail($email)){
+     if (!validaremail($email)){
         $erroremail="(Error en email)";//Hay error
-        }else{
+        $hayerrores = True;
+    }else{
         $erroremail="";
         }
  //Validar fecha nacimiento
         $edad = edad($FechaNacimiento);
-         if ($email<18){
+     if ($edad<18){
         $erroredad="(Error en edad)";//Hay error
-        }else{
+        $hayerrores = True;
+     }else{
         $erroredad="";
         }
  //Validar sexo
-        if ($sexo=="Selecciona"){
+     if ($sexo=="Selecciona"){
         $errorsexo="Error sexo no definido";
         $sexo="";
-        }else{
+        $hayerrores = True;
+     }else{
          $errorsexo="";
         }
    
+        if($hayerrores) {
+            //echo "Hay errores...<br>";
+            //echo $_SERVER['QUERY_STRING'];
+            $url = "index.php?".$_SERVER['QUERY_STRING'].$errores;
+            header("Location: ".$url);
+        }
         
   
   
