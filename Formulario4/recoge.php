@@ -18,15 +18,29 @@ function edad($FechaNacimiento) {
             $diff = $interval->format('%y'); 
             return $diff;  
 }
+function validarnombre($nombre){
+     $patron = "/^[a-zA-Z1]{3,}([[:space:]][[:alpha:]]{2,})*$/";
+     //QUEDAMOS AKIIIII NO VA CON Ñ ni con palabras con tilde
+     return preg_match($patron, $nombre);
+}
 
 
         $nombre = (isset($_REQUEST['nombre']))?$_REQUEST['nombre']:"No definido";
         $FechaNacimiento = (isset($_REQUEST['FechaNacimiento']))?$_REQUEST['FechaNacimiento']:"No definido";
-        //Verifica si existe dato e-mail
         $email = (isset($_REQUEST['email']))?$_REQUEST['email']:"No definido";
-        $sexo = (isset($_REQUEST['sexo']))?$_REQUEST['sexo']:"No definido";
+        //$sexo = (isset($_REQUEST['sexo']))?$_REQUEST['sexo']:"Error . Debe usted seleccionar sexo";
+        $sexo = $_REQUEST['sexo'];
         $familianumerosa = (isset($_REQUEST['familianumerosa']))?"si":"No";
         
+        
+        
+//Validar nombre
+  $nombre= limpiarEntradaTexto($nombre);  
+  if (!validarnombre($nombre)){
+        $errornombre="(Error en nombre)";//Hay error
+        }else{
+        $errornombre="";
+        }
 //Validar el e-mail:
         if (!validaremail($email)){
         $erroremail="(Error en email)";//Hay error
@@ -35,17 +49,28 @@ function edad($FechaNacimiento) {
         }
  //Validar fecha nacimiento
         $edad = edad($FechaNacimiento);
+         if ($email<18){
+        $erroredad="(Error en edad)";//Hay error
+        }else{
+        $erroredad="";
+        }
+ //Validar sexo
+        if ($sexo=="Selecciona"){
+        $errorsexo="Error sexo no definido";
+        $sexo="";
+        }else{
+         $errorsexo="";
+        }
+   
         
-  $nombre= limpiarEntradaTexto($nombre);
   
-print "<p>Nombre:                      $nombre</p>"; 
+  
+print "<p>Nombre:                      $nombre $errornombre</p>"; 
 print "<p>Fecha de Nacimiento:         $FechaNacimiento</p>"; 
-print "<p>Edad:                        $edad </p>";
-print "<p>Email:                       $email.$erroremail</p>";
-print "<p>Sexo:                        $sexo</p>"; 
+print "<p>Edad:                        $edad$erroredad </p>";
+print "<p>Email:                       $email $erroremail</p>";
+print "<p>Sexo:                        $sexo $errorsexo</p>"; 
 print "<p>Familia Numerosa:            $familianumerosa</p>"; 
-
-
 
 
 
