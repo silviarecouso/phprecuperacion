@@ -60,6 +60,7 @@ function validarnombre($nombre){
         $erroredad="(Error en edad)";//Hay error
         $hayerrores = True;
         $errores .="&erroredad";
+        
      }else{
         $erroredad="";
         }
@@ -68,6 +69,7 @@ function validarnombre($nombre){
         $errorsexo="Error sexo no definido";
         $sexo="";
         $hayerrores = True;
+        $errores .="&errorsexo";
      }else{
          $errorsexo="";
         }
