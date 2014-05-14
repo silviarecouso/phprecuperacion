@@ -25,7 +25,7 @@
     </head>
     <body>
         <form action="funciones_bd.php">
-            <div><a href="funciones_bd.php">ConectaBD</a></div>
+            <div><a href="listado_alumnos.php">ConectaBD</a></div>
         </form>
     </body>
 </html>
