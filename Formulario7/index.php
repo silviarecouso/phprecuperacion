@@ -24,8 +24,8 @@
         <link rel="stylesheet" type="text/css" href="estilo.css" />
     </head>
     <body>
-        <form action="recoge.php">
-            <div><a href="conecta.php">ConectaBD</a></div>
+        <form action="funciones_bd.php">
+            <div><a href="funciones_bd.php">ConectaBD</a></div>
         </form>
     </body>
 </html>

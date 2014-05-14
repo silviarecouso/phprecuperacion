@@ -28,6 +28,5 @@ function conectaBd()
 }
 
 
-$bd = conectaBd();
-echo "Conexion realizada"
+
 ?>
